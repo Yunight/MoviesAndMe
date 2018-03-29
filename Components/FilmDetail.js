@@ -118,10 +118,6 @@ class FilmDetail extends React.Component {
               return company.name;
             }).join(" / ")}
           </Text>
-          <Text style={styles.default_text}>Companie(s) : {this.props.favoritesFilm.map(function(test){
-              return test;
-            }).join(" / ")}
-          </Text>
         </ScrollView>
       )
     }
