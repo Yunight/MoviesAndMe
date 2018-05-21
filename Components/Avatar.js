@@ -1,7 +1,8 @@
+// Components/Avatar.js
+
 import React from 'react'
 import { StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import ImagePicker from 'react-native-image-picker'
 
 class Avatar extends React.Component {
 
@@ -26,7 +27,7 @@ class Avatar extends React.Component {
         this.props.dispatch(action)
       }
     })
-  }
+}
 
   render() {
     return(

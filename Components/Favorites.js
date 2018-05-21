@@ -1,3 +1,5 @@
+// Components/Favorites.js
+
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Avatar from './Avatar'
@@ -23,7 +25,7 @@ class Favorites extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  main_container: {
+  main_container: {
     flex: 1
   },
   avatar_container: {

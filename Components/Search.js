@@ -1,5 +1,7 @@
+// Components/Search.js
+
 import React from 'react'
-import { StyleSheet, View, TextInput, Button, Text, FlatList, ActivityIndicator, SafeAreaView } from 'react-native'
+import { StyleSheet, View, TextInput, Button, Text, FlatList, ActivityIndicator } from 'react-native'
 import FilmList from './FilmList'
 import FilmItem from './FilmItem'
 import { getFilmsFromApiWithSearchedText } from '../API/TMDBApi'
@@ -15,8 +17,6 @@ class Search extends React.Component {
       page: 0,
       totalPages: 1
     }
-
-    this._loadFilms = this._loadFilms.bind(this)
   }
 
   _searchTextInputChanged(text) {
@@ -56,9 +56,8 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log("TEST Chrome Developer Tools")
     return (
-      <SafeAreaView style={styles.main_container}>
+      <View style={styles.main_container}>
         <TextInput
           style={styles.textinput}
           placeholder='Titre du film'
@@ -67,15 +66,14 @@ class Search extends React.Component {
         />
         <Button style={{ height: 50 }} title='Rechercher' onPress={() => this._searchFilms()}/>
         <FilmList
-          films={this.state.films}
-          navigation={this.props.navigation}
-          loadFilms={this._loadFilms}
+          films={this.state.films} // C'est bien le component Search qui récupère les films depuis l'API et on les transmet ici pour que le component FilmList les affiche
+          navigation={this.props.navigation} // Ici on transmet les informations de navigation pour permettre au component FilmList de naviguer vers le détail d'un film
+          loadFilms={this._loadFilms} // _loadFilm charge les films suivants, ça concerne l'API, le component FilmList va juste appeler cette méthode quand l'utilisateur aura parcouru tous les films et c'est le component Search qui lui fournira les films suivants
           page={this.state.page}
-          totalPages={this.state.totalPages}
-          favoriteList={false}
+          totalPages={this.state.totalPages} // les infos page et totalPages vont être utile, côté component FilmList, pour ne pas déclencher l'évènement pour charger plus de film si on a atteint la dernière page
         />
         {this._displayLoading()}
-      </SafeAreaView>
+      </View>
     )
   }
 }

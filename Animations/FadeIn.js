@@ -1,3 +1,5 @@
+// Animations/FadeIn.js
+
 import React from 'react'
 import { Animated, Dimensions } from 'react-native'
 

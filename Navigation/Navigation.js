@@ -1,12 +1,13 @@
+// Navigation/Navigation.js
+
 import React from 'react'
 import { StyleSheet, Image } from 'react-native';
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import Search from '../Components/Search'
 import FilmDetail from '../Components/FilmDetail'
 import Favorites from '../Components/Favorites'
-import News from '../Components/News'
 
-const SearchStackNavigator = StackNavigator({
+const SearchStackNavigator = createStackNavigator({
   Search: {
     screen: Search,
     navigationOptions: {
@@ -18,7 +19,7 @@ const SearchStackNavigator = StackNavigator({
   }
 })
 
-const FavoritesStackNavigator = StackNavigator({
+const FavoritesStackNavigator = createStackNavigator({
   Favorites: {
     screen: Favorites,
     navigationOptions: {
@@ -30,7 +31,7 @@ const FavoritesStackNavigator = StackNavigator({
   }
 })
 
-const NewsStackNavigator = StackNavigator({
+const NewsStackNavigator = createStackNavigator({
   News: {
     screen: News,
     navigationOptions: {
@@ -42,7 +43,7 @@ const NewsStackNavigator = StackNavigator({
   }
 })
 
-const MoviesTabNavigator = TabNavigator(
+const MoviesTabNavigator = createBottomTabNavigator(
   {
     Search: {
       screen: SearchStackNavigator,
@@ -77,12 +78,11 @@ const MoviesTabNavigator = TabNavigator(
   },
   {
     tabBarPosition: 'bottom',
-    tabBarComponent: TabBarBottom,
     tabBarOptions: {
-      showIcon: true,
-      showLabel: false,
-      activeBackgroundColor: '#DDDDDD',
-      inactiveBackgroundColor: '#FFFFFF',
+      activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
+      inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
+      showLabel: false, // On masque les titres
+      showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
     }
   }
 )

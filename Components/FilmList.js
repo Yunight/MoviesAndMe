@@ -1,3 +1,5 @@
+// Components/FilmList.js
+
 import React from 'react'
 import { StyleSheet, FlatList } from 'react-native'
 import FilmItem from './FilmItem'
@@ -13,17 +15,17 @@ class FilmList extends React.Component {
   }
 
   _displayDetailForFilm = (idFilm) => {
+    console.log("Display film " + idFilm)
+    // On a récupéré les informations de la navigation, on peut afficher le détail du film
     this.props.navigation.navigate('FilmDetail', {idFilm: idFilm})
   }
-
-  _keyExtractor = (item) => item.id
 
   render() {
     return (
         <FlatList
           style={styles.list}
           data={this.props.films}
-          keyExtractor={this._keyExtractor}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => (
             <FilmItem
               film={item}
@@ -33,7 +35,8 @@ class FilmList extends React.Component {
           )}
           onEndReachedThreshold={0.5}
           onEndReached={() => {
-            if (!this.props.favoriteList && this.props.films.length > 0 && this.props.page < this.props.totalPages) {
+            if (this.props.films.length > 0 && this.props.page < this.props.totalPages) {
+              // On appelle la méthode loadfilm du component Search pour charger plus de film
               this.props.loadFilms()
             }
           }}
