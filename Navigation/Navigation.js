@@ -6,6 +6,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import Search from '../Components/Search'
 import FilmDetail from '../Components/FilmDetail'
 import Favorites from '../Components/Favorites'
+import News from '../Components/News'
 
 const SearchStackNavigator = createStackNavigator({
   Search: {
