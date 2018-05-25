@@ -5,17 +5,15 @@ import { } from 'react-native'
 import FilmList from './FilmList'
 import { getBestFilmsFromApi } from '../API/TMDBApi'
 
-export default class News extends React.Component {
+class News extends React.Component {
   constructor(props) {
     super(props)
-
+    this.page = 0
+    this.totalPages = 0
     this.state = {
       films: [],
-      isLoading: false,
-      page: 0,
-      totalPages: 1
+      isLoading: false
     }
-
     this._loadFilms = this._loadFilms.bind(this)
   }
 
@@ -25,13 +23,13 @@ export default class News extends React.Component {
 
   _loadFilms() {
     this.setState({ isLoading: true })
-    getBestFilmsFromApi(this.state.page+1).then(data => {
+    getBestFilmsFromApi(this.page+1).then(data => {
+        this.page = data.page
+        this.totalPages = data.total_pages
         this.setState({
-        films: [ ...this.state.films, ...data.results ],
-        isLoading: false,
-        page: data.page,
-        totalPages: data.total_pages
-      })
+          films: [ ...this.state.films, ...data.results ],
+          isLoading: false
+        })
     })
   }
 
@@ -41,10 +39,12 @@ export default class News extends React.Component {
         films={this.state.films}
         navigation={this.props.navigation}
         loadFilms={this._loadFilms}
-        page={this.state.page}
-        totalPages={this.state.totalPages}
+        page={this.page}
+        totalPages={this.totalPages}
         favoriteList={false}
       />
     )
   }
 }
+
+export default News

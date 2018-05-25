@@ -28,7 +28,7 @@ class Avatar extends React.Component {
         this.props.dispatch(action)
       }
     })
-}
+  }
 
   render() {
     return(

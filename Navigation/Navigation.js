@@ -49,10 +49,10 @@ const MoviesTabNavigator = createBottomTabNavigator(
     Search: {
       screen: SearchStackNavigator,
       navigationOptions: {
-        tabBarIcon: () => { // On définit le rendu de nos icônes par les images récemment ajoutés au projet
+        tabBarIcon: () => {
           return <Image
             source={require('../Images/ic_search.png')}
-            style={styles.icon}/> // On applique un style pour les redimensionner comme il faut
+            style={styles.icon}/>
         }
       }
     },
@@ -80,10 +80,10 @@ const MoviesTabNavigator = createBottomTabNavigator(
   {
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
-      inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
-      showLabel: false, // On masque les titres
-      showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
+      activeBackgroundColor: '#DDDDDD',
+      inactiveBackgroundColor: '#FFFFFF',
+      showLabel: false,
+      showIcon: true
     }
   }
 )
